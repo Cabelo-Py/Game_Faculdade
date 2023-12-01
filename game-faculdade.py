@@ -14,6 +14,9 @@ screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_width))
 pygame.display.set_caption('Platformer')
 
+
+
+
 #definição das variaveis do Game
 tile_size = 30
 game_over = 0
@@ -43,6 +46,8 @@ bg_img = pygame.image.load('ceu.png')
 restart_img = pygame.image.load('restart.png')
 start_img = pygame.image.load('start.png')
 quit_img = pygame.image.load('quit.png')
+
+
 
 def reset_level(level):
 	player.reset(50, screen_height - 130)
@@ -83,6 +88,8 @@ class Button():
 		screen.blit(self.image, self.rect)
 
 		return action
+
+
 
 class Player():
 	def __init__(self, x, y):
@@ -200,6 +207,8 @@ class Player():
 		self.in_air = True
 		self.scroll = 0
 
+
+
 class World():
 	def __init__(self, data):
 		self.tile_list = []
@@ -239,6 +248,8 @@ class World():
 		for tile in self.tile_list:
 			screen.blit(tile[0], tile[1])
 
+
+
 class Lava(pygame.sprite.Sprite):
 	def __init__(self, x, y):
 		pygame.sprite.Sprite.__init__(self)
@@ -258,6 +269,8 @@ class Exit(pygame.sprite.Sprite):
 		self.rect.y = y
 
 
+
+
 player = Player(50, screen_height - 130)
 
 lava_group = pygame.sprite.Group()
@@ -271,6 +284,7 @@ world = World(world_data)
 restart_button = Button(screen_width // 2 - 116, screen_height // 2  - 50, restart_img)
 start_button = Button(screen_width // 2 - 220, screen_height // 2, start_img)
 quit_button = Button(screen_width // 2 + 50, screen_height // 2, quit_img)
+
 
 
 run = True
@@ -305,7 +319,9 @@ while run:
 
 		game_over = player.update(game_over)
 
-		#quando jogador morre
+
+	#	quando jogador morre
+
 		if game_over == -1:
 			if restart_button.draw():
 				player.reset(50, screen_height - 130)
@@ -329,5 +345,6 @@ while run:
 			run = False
 
 	pygame.display.update()
+
 
 pygame.quit()
